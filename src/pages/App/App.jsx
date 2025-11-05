@@ -90,7 +90,6 @@ export default function App() {
       />
       <Route path="/events" element={<EventsPage />} />
 
-      {/* Fallback */}
       <Route path="*" element={<Navigate to="/"/>} />
     </Routes>
   );
