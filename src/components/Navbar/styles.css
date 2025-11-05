@@ -1,0 +1,167 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: radial-gradient(80% 50% at 50% 0%, rgba(79, 58, 167, .18), transparent 60%),
+                linear-gradient(180deg, #0b0c22, #0f1240);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.nav-inner {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    height: 100px;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+    opacity: .95;
+}
+
+.nav-center {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin: 0;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+.nav-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 400;
+    position: relative;
+    transition: color .2s;
+}
+
+.nav-link:hover {
+    color: var(--color-accent-300);
+}
+
+.nav-right {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-text);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3d2d7f, #4f3aa7);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    border: none;
+    transition: all .2s ease;
+    box-shadow: 0 2px 8px rgba(61, 45, 127, 0.4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2d2159, #3d2d7f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61, 45, 127, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(61, 45, 127, 0.5);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.nav-link.with-caret {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.caret {
+    transition: transform .2s;
+}
+
+.dropdown:hover .caret {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background: rgba(14, 16, 44, .98);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+    min-width: 220px;
+    display: none;
+    flex-direction: column;
+    padding: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+    z-index: 1000;
+}
+
+.dropdown-item {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, .07);
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: flex;
+}
+
+.ministry-name,
+.charity-name {
+    background: linear-gradient(135deg, rgba(79, 58, 167, 0.3), rgba(79, 58, 167, 0.2));
+    color: #b39cff;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(79, 58, 167, 0.4);
+    font-size: 0.95rem;
+    transition: all .2s ease;
+    display: inline-block;
+}
+
+.ministry-name:hover,
+.charity-name:hover {
+    background: linear-gradient(135deg, rgba(79, 58, 167, 0.4), rgba(79, 58, 167, 0.3));
+    border-color: rgba(79, 58, 167, 0.6);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 58, 167, 0.4);
+}

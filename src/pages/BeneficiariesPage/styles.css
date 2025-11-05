@@ -1,0 +1,342 @@
+.beneficiaries-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+}
+
+.beneficiaries-page__content {
+    padding: 2rem 0 4rem;
+    flex: 1;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.dashboard-header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.beneficiaries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.beneficiary-card {
+    padding: 2.5rem;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.beneficiary-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    background: white;
+    border-color: #4f3aa7;
+    box-shadow: 0 12px 40px rgba(79, 58, 167, 0.2);
+}
+
+.beneficiary-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.beneficiary-card__header h3 {
+    font-weight: 800;
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    color: #1a1a2e;
+    letter-spacing: -0.02em;
+    flex: 1;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.beneficiary-card__actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.beneficiary-card__body {
+    flex: 1;
+}
+
+.beneficiary-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.beneficiary-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.beneficiary-info strong {
+    color: #1a1a2e;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.beneficiary-form-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+}
+
+.beneficiary-form-card h3 {
+    font-size: 1.75rem;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4f3aa7;
+    box-shadow: 0 0 0 3px rgba(79, 58, 167, 0.1);
+}
+
+.form-group input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+}
+
+.button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button--primary {
+    background: linear-gradient(135deg, #4f3aa7, #3d2d7f);
+    color: white;
+    box-shadow: 0 4px 12px rgba(79, 58, 167, 0.3);
+}
+
+.button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 58, 167, 0.4);
+}
+
+.button--secondary {
+    background: white;
+    color: #4f3aa7;
+    border: 2px solid #4f3aa7;
+}
+
+.button--secondary:hover {
+    background: #f8f9fa;
+}
+
+.button--danger {
+    background: #dc3545;
+    color: white;
+}
+
+.button--danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.button-icon {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-icon:hover {
+    background: #f0f0f0;
+    color: #4f3aa7;
+}
+
+.button-icon--danger:hover {
+    background: #fee;
+    color: #dc3545;
+}
+
+.loading-spinner {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.beneficiaries-page__error {
+    background: #fee;
+    color: #c33;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #fcc;
+}
+
+.error-message {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #dc3545;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal h3 {
+    font-size: 1.5rem;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+}
+
+.modal p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .beneficiaries-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+    }
+}
+

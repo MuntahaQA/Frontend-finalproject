@@ -1,0 +1,108 @@
+.mission {
+    background: linear-gradient(to bottom, var(--color-bg-900) 0%, var(--color-bg-800) 100%);
+    padding: 100px 0;
+}
+
+.mission__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.mission__badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(179, 156, 255, 0.15);
+    border: 1px solid rgba(179, 156, 255, 0.4);
+    border-radius: 8px;
+    color: var(--color-accent-300);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.mission__title {
+    margin-bottom: 24px;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-accent-300) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em;
+}
+
+.mission__subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--color-text-dim);
+    line-height: 1.7;
+}
+
+.mission__grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 32px;
+}
+
+.mission__card {
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.mission__card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(179, 156, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(79, 58, 167, 0.2);
+}
+
+.mission__icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(79, 58, 167, 0.2), rgba(179, 156, 255, 0.1));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-300);
+}
+
+.mission__cardTitle {
+    font-weight: 900;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    margin-bottom: 16px;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+}
+
+.mission__cardText {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-dim);
+}
+
+@media (min-width: 768px) {
+    .mission__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mission__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .mission__card {
+        padding: 50px 40px;
+    }
+}
