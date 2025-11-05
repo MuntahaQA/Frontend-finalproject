@@ -10,7 +10,6 @@ import Footer from "../../components/Footer";
 import "./styles.css";
 
 export default function HomePage() {
-  // Authentication & role (without AuthContext)
   const token = localStorage.getItem("token");
   const isAuthenticated = Boolean(token);
 
