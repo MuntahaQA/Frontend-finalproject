@@ -10,7 +10,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Helper to add a timeout to a promise
   const withTimeout = (p, ms = 5000) =>
     Promise.race([
       p,
@@ -25,19 +24,16 @@ export default function LoginPage() {
     try {
       const result = await api.loginUser(email, password);
 
-      // support different token key names returned by various backends
       const token = result?.access || result?.token || result?.accessToken || null;
       if (token) {
         localStorage.setItem("token", token);
         if (result?.refresh) localStorage.setItem("refreshToken", result.refresh);
 
-        // Get user either from login response or from profile endpoint
         let user = result?.user || null;
         if (!user) {
           try {
             user = await withTimeout(api.fetchUserProfile(), 5000);
           } catch (e) {
-            // don't fail the whole login if profile is slow/unavailable
             console.warn("Could not fetch user profile after login (or timed out):", e);
             user = null;
           }
@@ -47,15 +43,12 @@ export default function LoginPage() {
           try {
             localStorage.setItem("user", JSON.stringify(user));
           } catch (e) {
-            /* ignore storage errors */
           }
         }
 
-        // notify other components to re-fetch/update their state
         try {
           window.dispatchEvent(new Event("sila:auth-changed"));
         } catch (e) {
-          /* ignore */
         }
 
         const isMinistry =
