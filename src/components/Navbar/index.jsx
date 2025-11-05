@@ -38,17 +38,14 @@ const REGISTER_ITEMS = [
 export default function Navbar() {
   const navigate = useNavigate();
 
-  // Local state to trigger re-render when auth changes
   const [authTick, setAuthTick] = useState(0);
 
-  // Auth state (no AuthContext)
   const token = localStorage.getItem("token");
   const isAuthenticated = Boolean(token);
   const user = getCurrentUser();
   const isMinistryUser = Boolean(user?.is_superuser);
   const isCharityAdmin = Boolean(user?.charity_admin);
 
-  // Get ministry name from user data
   const getMinistryName = () => {
     if (isMinistryUser && user?.first_name) return user.first_name;
     if (user?.first_name || user?.last_name) {
@@ -57,7 +54,6 @@ export default function Navbar() {
     return user?.email?.split("@")[0] || "Ministry";
   };
 
-  // Get charity name from user data
   const getCharityName = () => {
     if (isCharityAdmin && user?.charity_admin) {
       return user.charity_admin.name || user.charity_admin.charity_name || "Charity";
@@ -65,7 +61,6 @@ export default function Navbar() {
     return "Charity";
   };
 
-  // Logout: clear storage and redirect
   const handleLogout = () => {
     try {
       localStorage.removeItem("token");
@@ -118,7 +113,7 @@ export default function Navbar() {
             </div>
           </>
         ) : (
-          // Public/Regular User Navbar
+          // Public User Navbar
           <>
             <ul className="nav-center">
               <li><Link to="/" className="nav-link">Home</Link></li>
