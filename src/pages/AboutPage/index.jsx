@@ -8,7 +8,6 @@ export default function AboutPage() {
     <main className="about-page">
       <Navbar />
       
-      {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero-content">
           <h1>About SILA</h1>
@@ -16,7 +15,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
       <section className="about-content">
         <div className="container">
           <div className="mission-vision-grid">
@@ -52,7 +50,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values Section */}
       <section className="about-values">
         <div className="container">
           <h2 className="section-title">Our Values</h2>
@@ -106,7 +103,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How It Works Section */}
       <section className="about-how-it-works">
         <div className="container">
           <h2 className="section-title">How SILA Works</h2>
