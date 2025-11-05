@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "./styles.css";
 
-// Map program names to icons
 const getProgramIcon = (name) => {
   const iconMap = {
     'ضمان': (
@@ -44,7 +43,6 @@ const getProgramIcon = (name) => {
     if (name?.includes?.(keyword)) return icon;
   }
 
-  // Default icon
   return (
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -55,12 +53,10 @@ const getProgramIcon = (name) => {
 };
 
 export default function ProgramsPage() {
-  // Auth (without AuthContext)
   const token = localStorage.getItem("token");
   const currentUser = getCurrentUser();
   const isAuthenticated = Boolean(token);
 
-  // Heuristic for ministry user (keep flexible with different backends)
   const isMinistryUser =
     Boolean(currentUser?.is_ministry_user) ||
     Boolean(currentUser?.is_staff) ||
@@ -74,7 +70,6 @@ export default function ProgramsPage() {
   const [editingProgram, setEditingProgram] = useState(null);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState(null);
 
-  // Ministry name (from user's first_name, per your backend)
   const ministryName =
     (isMinistryUser && currentUser?.first_name) ||
     "";
@@ -88,7 +83,6 @@ export default function ProgramsPage() {
     status: "ACTIVE",
   });
 
-  // Keep ministry_owner synced with user
   useEffect(() => {
     if (ministryName) {
       setNewProgram((previous) => ({ ...previous, ministry_owner: ministryName }));
@@ -100,7 +94,6 @@ export default function ProgramsPage() {
       setIsLoading(true);
       setErrorMessage(null);
 
-      // GET programs (public allowed; backend decides visibility)
       const data = await sendRequest(API_ENDPOINTS.PROGRAMS, "GET");
 
       let programsList = [];
@@ -134,11 +127,9 @@ export default function ProgramsPage() {
 
   useEffect(() => {
     fetchPrograms();
-    // Re-fetch when auth changes or when the ministry name changes
     const onAuthChange = () => fetchPrograms();
     window.addEventListener('sila:auth-changed', onAuthChange);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       window.removeEventListener('sila:auth-changed', onAuthChange);
     };
