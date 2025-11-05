@@ -6,14 +6,12 @@ import Footer from "../../components/Footer";
 import "./styles.css";
 
 export default function ProfilePage() {
-  // Auth (no AuthContext)
   const token = localStorage.getItem("token");
   const initialUser = getCurrentUser();
   const isAuthenticated = Boolean(token);
   const isMinistryUser = Boolean(initialUser?.is_superuser);
   const isCharityAdmin = Boolean(initialUser?.charity_admin);
 
-  // Local user state so we can refresh after updates
   const [currentUser, setCurrentUser] = useState(initialUser);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +30,6 @@ export default function ProfilePage() {
     confirm_password: "",
   });
 
-  // Helper: refresh user from API and persist to localStorage
   async function refreshUserFromApi() {
     try {
       const refreshed = await sendRequest(API_ENDPOINTS.USER_PROFILE, "GET");
@@ -41,11 +38,9 @@ export default function ProfilePage() {
         setCurrentUser(refreshed);
       }
     } catch {
-      // ignore silently
     }
   }
 
-  // Initialize/load profile
   useEffect(() => {
     async function fetchProfile() {
       try {
@@ -64,7 +59,6 @@ export default function ProfilePage() {
           });
         }
       } catch (error) {
-        // Fallback to local user if API fails
         if (currentUser) {
           setProfileData({
             ministry_name: isMinistryUser ? String(currentUser.first_name || "") : "",
@@ -102,7 +96,6 @@ export default function ProfilePage() {
     setErrorMessage(null);
     setSuccessMessage(null);
 
-    // Validate password if provided
     if (profileData.password) {
       if (profileData.password.length < 8) {
         setErrorMessage("Password must be at least 8 characters long");
@@ -121,13 +114,10 @@ export default function ProfilePage() {
       };
 
       if (isMinistryUser) {
-        // Ministry name is stored in first_name for ministry accounts
         updatePayload.first_name = profileData.ministry_name;
       } else if (isCharityAdmin) {
-        // Charity name updated via custom field handled by backend
         updatePayload.charity_name = profileData.charity_name;
       } else {
-        // Regular users
         updatePayload.first_name = profileData.first_name;
         updatePayload.last_name = profileData.last_name;
       }
