@@ -27,14 +27,12 @@ import Footer from "../../components/Footer";
 import "./styles.css";
 
 export default function DashboardPage() {
-  // ===== Auth (بدون Context)
   const token = localStorage.getItem("token");
   const isAuthenticated = !!token;
   const user = getCurrentUser();
   const isMinistryUser = !!user?.is_superuser;
   const isCharityAdmin = !!user?.charity_admin;
 
-  // ===== State
   const [ministryStatistics, setMinistryStatistics] = useState(null);
   const [charityStatistics, setCharityStatistics] = useState(null);
 
@@ -68,13 +66,11 @@ export default function DashboardPage() {
     return qs ? `?${qs}` : "";
   };
 
-  // ===== Fetch lists
   const fetchProgramsList = async () => {
     try {
       const data = await sendRequest(API_ENDPOINTS.PROGRAMS, "GET");
       let list = Array.isArray(data) ? data : data?.results || [];
 
-      // فلترة إسم الوزارة (اجتهاد واجهة – الخادم يجب أن يصرّح)
       const currentMinistryName = getMinistryName();
       if (currentMinistryName && currentMinistryName !== "Ministry") {
         list = list.filter(
@@ -103,7 +99,6 @@ export default function DashboardPage() {
     }
   };
 
-  // ===== Fetch statistics
   const fetchMinistryStatistics = async () => {
     try {
       setPageError(null);
@@ -213,7 +208,6 @@ export default function DashboardPage() {
       .finally(() => setIsLoading(false));
   }, [isAuthenticated, isMinistryUser, isCharityAdmin]);
 
-  // ===== Refetch on filters change (debounced)
   useEffect(() => {
     if (!isAuthenticated) return;
 
@@ -237,7 +231,6 @@ export default function DashboardPage() {
     isCharityAdmin,
   ]);
 
-  // ===== Access guard
   if (!isAuthenticated || (!isMinistryUser && !isCharityAdmin)) {
     return (
       <main className="dashboard-page">
@@ -251,7 +244,6 @@ export default function DashboardPage() {
     );
   }
 
-  // ===== Render
   return (
     <main className="dashboard-page">
       <Navbar />
@@ -434,7 +426,6 @@ export default function DashboardPage() {
 
           {pageError && <div className="error-message">{pageError}</div>}
 
-          {/* Stats cards */}
           <div className="dashboard-stats-section">
             {isLoading ? (
               <div className="dashboard-loading">
@@ -626,10 +617,8 @@ export default function DashboardPage() {
             <div className="charts-section">
               <h3 className="dashboard-stats-title">Analytics & Charts</h3>
               <div className="charts-grid">
-                {/* Ministry charts */}
                 {isMinistryUser && ministryStatistics && (
                   <>
-                    {/* Applications by Status */}
                     {Array.isArray(ministryStatistics.applications_by_status) &&
                       ministryStatistics.applications_by_status.length > 0 ? (
                       <div className="chart-card">
@@ -687,7 +676,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* Applications by Program */}
                     {Array.isArray(ministryStatistics.applications_by_program) &&
                       ministryStatistics.applications_by_program.length > 0 ? (
                       <div className="chart-card">
@@ -729,7 +717,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* Programs summary */}
                     {Array.isArray(ministryStatistics.programs_summary) &&
                       ministryStatistics.programs_summary.length > 0 ? (
                       <div className="chart-card chart-card--wide">
@@ -769,7 +756,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* Over time */}
                     {Array.isArray(ministryStatistics.applications_over_time) &&
                       ministryStatistics.applications_over_time.length > 0 ? (
                       <div className="chart-card">
@@ -811,7 +797,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* By charity */}
                     {Array.isArray(ministryStatistics.applications_by_charity) &&
                       ministryStatistics.applications_by_charity.length > 0 ? (
                       <div className="chart-card">
@@ -856,10 +841,8 @@ export default function DashboardPage() {
                   </>
                 )}
 
-                {/* Charity charts */}
                 {isCharityAdmin && charityStatistics && (
                   <>
-                    {/* Applications by Status */}
                     {Array.isArray(charityStatistics.applications_by_status) &&
                       charityStatistics.applications_by_status.length > 0 ? (
                       <div className="chart-card">
@@ -917,7 +900,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* Registrations by Event */}
                     {Array.isArray(charityStatistics.registrations_by_event) &&
                       charityStatistics.registrations_by_event.length > 0 ? (
                       <div className="chart-card">
@@ -959,7 +941,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* Registrations over time */}
                     {Array.isArray(charityStatistics.registrations_over_time) &&
                       charityStatistics.registrations_over_time.length > 0 ? (
                       <div className="chart-card">
@@ -1001,7 +982,6 @@ export default function DashboardPage() {
                       </div>
                     )}
 
-                    {/* Applications by Program */}
                     {Array.isArray(charityStatistics.applications_by_program) &&
                       charityStatistics.applications_by_program.length > 0 ? (
                       <div className="chart-card">
@@ -1048,7 +1028,6 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* Extra summaries */}
           {isMinistryUser &&
             ministryStatistics &&
             Array.isArray(ministryStatistics.programs_summary) &&
