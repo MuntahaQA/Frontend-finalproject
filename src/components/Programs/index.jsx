@@ -4,7 +4,6 @@ import sendRequest from "../../utilities/sendRequest";
 import { API_ENDPOINTS } from "../../utilities/api";
 import "./styles.css";
 
-// Map program names to icons
 const getProgramIcon = (name) => {
   const iconMap = {
     'ضمان': (
@@ -39,14 +38,12 @@ const getProgramIcon = (name) => {
     ),
   };
 
-  // Check for keywords in program name
   for (const [keyword, icon] of Object.entries(iconMap)) {
     if (name && name.includes(keyword)) {
       return icon;
     }
   }
 
-  // Default icon
   return (
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -67,10 +64,8 @@ export default function Programs() {
         setLoading(true);
         setError(null);
         
-  // Fetch only ACTIVE programs for public view
   const data = await sendRequest(API_ENDPOINTS.PROGRAMS, 'GET');
         
-        // Handle paginated response or array response
         let programsList = [];
         if (data && data.results) {
           programsList = data.results;
@@ -78,7 +73,6 @@ export default function Programs() {
           programsList = data;
         }
         
-        // Filter to show only ACTIVE programs for public view
         programsList = programsList.filter(p => p.status === 'ACTIVE');
         setPrograms(programsList);
       } catch (err) {

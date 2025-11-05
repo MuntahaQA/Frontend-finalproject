@@ -176,6 +176,22 @@
     color: rgba(255, 255, 255, 0.3);
     font-size: 0.9rem;
 }
+.footer__icon {
+  margin-right: 8px;
+  color: #b39cff;
+}
+
+.footer__social-link {
+  margin-right: 12px;
+  font-size: 18px;
+  color: #b39cff;
+  transition: color 0.3s;
+}
+
+.footer__social-link:hover {
+  color: #ffffff;
+}
+
 
 @media (min-width: 768px) {
     .footer__bottom {

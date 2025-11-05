@@ -4,14 +4,13 @@ import { getCurrentUser } from "../../utilities/api";
 import "./styles.css";
 
 export default function Hero() {
-  // Auth (no Context)
   const token = localStorage.getItem("token");
   const isAuthenticated = Boolean(token);
-  const user = getCurrentUser(); // لو احتجته لاحقًا للأدوار/عرض اسم
+  const user = getCurrentUser(); 
+
 
   return (
     <section id="home" className="hero section">
-      {/* Charity-themed Background with SILA colors */}
       <div className="hero__charity-bg">
         <div className="hero__gradient-overlay"></div>
         <div className="hero__pattern-overlay"></div>
@@ -20,7 +19,6 @@ export default function Hero() {
       <div className="hero__inner">
         <div className="hero__content">
           <div className="hero__text">
-            {/* Sub-headline */}
             <p className="hero__badge fade-in">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -29,19 +27,16 @@ export default function Hero() {
               National Platform for Charitable Support
             </p>
 
-            {/* Main Headline */}
             <h1 className="hero__title title fade-in-delay-1">
               Connecting Communities,
               <span className="hero__title-highlight"> Transforming Lives</span>
             </h1>
 
-            {/* Description */}
             <p className="hero__description fade-in-delay-2">
               SILA bridges the gap between charities, ministries, and those in need.
               A unified platform ensuring transparency, trust, and efficient support delivery for our communities.
             </p>
 
-            {/* CTA Buttons */}
             {!isAuthenticated ? (
               <div className="hero__actions fade-in-delay-3">
                 <Link to="/register?type=charity" className="button button--primary hero__cta-primary">
@@ -72,7 +67,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Illustration moved to grid */}
         <div className="hero__illustration">
           <svg viewBox="0 0 600 600" className="charity-svg">
             <defs>
@@ -90,11 +84,9 @@ export default function Hero() {
               </linearGradient>
             </defs>
 
-            {/* Central connection circle */}
             <circle cx="300" cy="300" r="100" fill="url(#silaGrad1)" opacity="0.4" />
             <circle cx="300" cy="300" r="80" fill="url(#silaGrad2)" opacity="0.3" />
 
-            {/* People around the center - helping hands */}
             <g transform="translate(300, 150)">
               <circle cx="0" cy="0" r="30" fill="url(#silaGrad3)" opacity="0.8" />
               <ellipse cx="0" cy="40" rx="25" ry="50" fill="url(#silaGrad3)" opacity="0.7" />
@@ -121,13 +113,11 @@ export default function Hero() {
               <ellipse cx="25" cy="-20" rx="8" ry="25" fill="url(#silaGrad3)" opacity="0.6" transform="rotate(40)" />
             </g>
 
-            {/* Connecting lines */}
             <path d="M300 150 Q300 220 300 300" stroke="rgba(179, 156, 255, 0.3)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
             <path d="M150 300 Q225 300 300 300" stroke="rgba(179, 156, 255, 0.3)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
             <path d="M300 300 Q375 300 450 300" stroke="rgba(179, 156, 255, 0.3)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
             <path d="M300 300 Q300 375 300 450" stroke="rgba(179, 156, 255, 0.3)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
 
-            {/* Heart at center */}
             <g transform="translate(300, 300)">
               <path
                 d="M0,-20 C-15,-35 -30,-25 -30,-10 C-30,0 -15,10 0,25 C15,10 30,0 30,-10 C30,-25 15,-35 0,-20 Z"
@@ -136,7 +126,6 @@ export default function Hero() {
               />
             </g>
 
-            {/* Floating particles */}
             <circle cx="100" cy="200" r="4" fill="#b39cff" opacity="0.6" className="particle" />
             <circle cx="500" cy="200" r="4" fill="#b39cff" opacity="0.6" className="particle" />
             <circle cx="100" cy="400" r="4" fill="#b39cff" opacity="0.6" className="particle" />

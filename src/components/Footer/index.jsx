@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import "./styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faPhone,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faTwitter,
+  faLinkedin,
+  faFacebook,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   const year = new Date().getFullYear();

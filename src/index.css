@@ -4,15 +4,10 @@
 
 :root {
   --color-bg-950: #0b0c22;
-  /* deep navy */
   --color-bg-900: #0f1240;
-  /* dark indigo */
   --color-bg-800: #151c6a;
-  /* indigo */
   --color-accent-600: #4f3aa7;
-  /* purple */
   --color-accent-300: #b39cff;
-  /* lavender */
   --color-text: #ffffff;
   --color-text-dim: rgba(255, 255, 255, 0.7);
   --color-border: rgba(255, 255, 255, 0.12);

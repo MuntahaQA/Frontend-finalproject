@@ -6,8 +6,6 @@ import Footer from "../../components/Footer";
 import "./styles.css";
 
 export default function EventsPage() {
-  // Auth (no AuthContext)
-  // Keep current user in state to avoid re-parsing localStorage on every render
   const [currentUserState, setCurrentUserState] = useState(() => getCurrentUser());
   const token = localStorage.getItem("token");
   const isAuthenticated = Boolean(token);
@@ -32,7 +30,6 @@ export default function EventsPage() {
   });
 
   function canManageEvents() {
-    // Only charity admins can manage events
     return isCharityAdmin;
   }
 
@@ -41,7 +38,6 @@ export default function EventsPage() {
       setIsLoading(true);
       setErrorMessage(null);
 
-      // Public GET (no auth required)
       const data = await sendRequest(API_ENDPOINTS.EVENTS, "GET");
 
       let eventsList = [];
@@ -50,9 +46,7 @@ export default function EventsPage() {
       } else if (Array.isArray(data)) {
         eventsList = data;
       }
-      // If the current user is a charity admin, show only their charity events
       if (isCharityAdmin && currentUserState?.charity_admin) {
-        // Try to match by charity id first (more reliable), fall back to name matching
         const charityObj = currentUserState.charity_admin;
         const charityId =
           (charityObj && (charityObj.id || charityObj.charity_id)) ||
@@ -64,16 +58,13 @@ export default function EventsPage() {
           "";
 
         eventsList = (eventsList || []).filter((ev) => {
-          // Match by id (backend might store numeric id fields)
           if (charityId) {
-            // ev.charity may be id, or object with id, or ev.organizer may be id/object
             const evCharityId = ev.charity && typeof ev.charity === 'object' ? ev.charity.id : ev.charity;
             const evOrganizerId = ev.organizer && typeof ev.organizer === 'object' ? ev.organizer.id : ev.organizer;
             if (evCharityId && Number(evCharityId) === Number(charityId)) return true;
             if (evOrganizerId && Number(evOrganizerId) === Number(charityId)) return true;
           }
 
-          // Fall back to name matching if present
           if (charityName && charityName.trim() !== "") {
             const lcName = charityName.toLowerCase();
             const organizer = (ev.organizer || ev.charity || ev.charity_name || ev.organizer_name || "").toString().toLowerCase();
@@ -83,7 +74,6 @@ export default function EventsPage() {
           return false;
         });
       } else {
-        // Public users see only active events (flexible with different field names)
         eventsList = (eventsList || []).filter((e) =>
           e.is_active === undefined ? (e.status ? e.status === 'ACTIVE' : true) : e.is_active
         );
@@ -100,12 +90,10 @@ export default function EventsPage() {
     }
   }
 
-  // fetch events on mount and when relevant auth state changes
   useEffect(() => {
     fetchEvents();
   }, [isAuthenticated, currentUserState?.charity_admin?.id, currentUserState?.id]);
 
-  // Keep currentUserState in sync with localStorage when auth changes
   useEffect(() => {
     const onAuthChange = () => {
       setCurrentUserState(getCurrentUser());
@@ -120,7 +108,7 @@ export default function EventsPage() {
       const payload = {
         ...newEvent,
         max_capacity: parseInt(newEvent.max_capacity, 10),
-        event_date: newEvent.event_date, // datetime-local ISO segment is fine for backend if it expects ISO
+        event_date: newEvent.event_date,
       };
 
   const response = await sendRequest(API_ENDPOINTS.EVENTS, "POST", payload);
