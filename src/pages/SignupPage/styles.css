@@ -37,7 +37,6 @@
   font-size: 16px;
 }
 
-/* User Type Selector (App Bar) */
 .user-type-selector {
   display: flex;
   gap: 12px;
@@ -210,7 +209,6 @@
   box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
 }
 
-/* Form Actions */
 .form-actions {
   margin-top: 20px;
   text-align: center;
@@ -255,7 +253,6 @@
   text-decoration: underline;
 }
 
-/* Alert Styles */
 .alert {
   position: fixed;
   top: 80px;
@@ -289,7 +286,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .signup-card {
     padding: 24px;
